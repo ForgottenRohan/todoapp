@@ -1,0 +1,29 @@
+{% extends 'base.html' %}
+{% block content %}
+<div class="container">
+    <h1>Home Page</h1>
+    <hr>
+    {% if user.is_authenticated %}
+        <h6>Welcome, {{user}}</h6>
+        {% if count == 0 %}
+            <h3>You dont have a tasks.</h3>
+            <a href="{%url 'create_task'%}"><button type="button" class="btn btn-primary">Create task</button></a>
+        {% else %}
+            {% for item in all_tasks %}
+                <div class="task">
+                    <p>ID:{{item.id}} | {{item.text}}</p>
+                </div>
+            {% endfor %}
+            <a href="{%url 'create_task'%}"><button type="button" class="btn btn-primary">Create new task</button></a>
+            <a href="{%url 'delete_task'%}"><button type="button" class="btn btn-secondary">Delete task</button></a>
+        {% endif %}
+        <form action="{%url 'logout'%}" method="post">
+            {%csrf_token%}
+            <button type="submit" class="btn btn-danger">Logout</button>
+        </form>
+    {% else %}
+        <h2>Login | Register</h2>
+        <a href="{%url 'login'%}"><button type="button" class="btn btn-success">Login</button></a> | <a href="{%url 'register'%}"><button type="button" class="btn btn-primary">Register</button></a>
+    {% endif %}
+</div>
+{% endblock %}

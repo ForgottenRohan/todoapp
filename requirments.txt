@@ -1,0 +1,7 @@
+antiorm==1.2.1
+asgiref==3.7.2
+db==0.1.1
+db-sqlite3==0.0.1
+Django==5.0
+mysqlclient==2.2.1
+sqlparse==0.4.4
